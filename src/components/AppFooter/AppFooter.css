@@ -1,0 +1,14 @@
+.AppFooter {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #242b3c;
+    color: #5e6e98;
+    border-radius: 0 0 5px 5px;
+}
+
+.TodoSortPanel span {
+    margin: 0 0.2rem;
+}

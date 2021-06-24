@@ -1,0 +1,62 @@
+.TodoListItem {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 0;
+    background-color: #242b3c;
+    color: #5e6e98;
+    border-bottom: 1px solid #313a52;
+}
+
+.TodoListItem:first-child {
+    border-radius: 5px 5px 0 0;
+}
+
+.TodoListItem label{
+    user-select: none;
+    cursor: pointer;
+}
+
+.RadioInput input[type="checkbox"] {
+    position: absolute;
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -99;
+}
+
+.RadioInput input[type="checkbox"] + label {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.RadioInput input[type="checkbox"] + label::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    border: 1px solid #416ad6;
+    border-radius: 50%;
+}
+
+.RadioInput input[type="checkbox"] + label::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform .3s ease-in-out;
+}
+
+.RadioInput input[type="checkbox"]:checked + label::after {
+    transform: scale(1);
+    content: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNDE2YWQ2IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciICB2aWV3Qm94PSIwIDAgMjYgMjYiIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIj48cGF0aCBkPSJNIDIyLjU2NjQwNiA0LjczMDQ2OSBMIDIwLjc3MzQzOCAzLjUxMTcxOSBDIDIwLjI3NzM0NCAzLjE3NTc4MSAxOS41OTc2NTYgMy4zMDQ2ODggMTkuMjY1NjI1IDMuNzk2ODc1IEwgMTAuNDc2NTYzIDE2Ljc1NzgxMyBMIDYuNDM3NSAxMi43MTg3NSBDIDYuMDE1NjI1IDEyLjI5Njg3NSA1LjMyODEyNSAxMi4yOTY4NzUgNC45MDYyNSAxMi43MTg3NSBMIDMuMzcxMDk0IDE0LjI1MzkwNiBDIDIuOTQ5MjE5IDE0LjY3NTc4MSAyLjk0OTIxOSAxNS4zNjMyODEgMy4zNzEwOTQgMTUuNzg5MDYzIEwgOS41ODIwMzEgMjIgQyA5LjkyOTY4OCAyMi4zNDc2NTYgMTAuNDc2NTYzIDIyLjYxMzI4MSAxMC45Njg3NSAyMi42MTMyODEgQyAxMS40NjA5MzggMjIuNjEzMjgxIDExLjk1NzAzMSAyMi4zMDQ2ODggMTIuMjc3MzQ0IDIxLjgzOTg0NCBMIDIyLjg1NTQ2OSA2LjIzNDM3NSBDIDIzLjE5MTQwNiA1Ljc0MjE4OCAyMy4wNjI1IDUuMDY2NDA2IDIyLjU2NjQwNiA0LjczMDQ2OSBaIi8+PC9zdmc+');
+}

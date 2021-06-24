@@ -1,0 +1,12 @@
+.App {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: .375rem .5rem;
+}
