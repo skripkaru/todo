@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "description": "TODO",
   "private": true,
-  "homepage": "http://skripkaru.github.io/todo",
+  "homepage": "http://skripkaru.github.io/react-todo",
   "repository": {
     "type": "git",
-    "url": "https://github.com/skripkaru/todo"
+    "url": "https://github.com/skripkaru/react-todo"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
