@@ -1,4 +1,4 @@
-# [TODO React](https://skripkaru.github.io/todo/)
+# [TODO React](https://skripkaru.github.io/react-todo/)
 
 ## Getting Started with Create React App
 
