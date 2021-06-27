@@ -10,50 +10,97 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [
-                {id: "0", text: "Выспаться", completed: true},
-                {id: "1", text: "Сходить на море", completed: false},
-                {id: "2", text: "Поиграть в баскетбол", completed: false},
-            ]
+            // data: [
+            //     {id: localStorage.getItem("id"), text: localStorage.getItem("text"), isChecked: localStorage.getItem("isChecked")},
+            //     {id: "0", text: "Выспаться", isChecked: false},
+            //     {id: "1", text: "Сходить на море", isChecked: false},
+            //     {id: "2", text: "Поиграть в баскетбол", isChecked: false},
+            // ],
+            data: JSON.parse(localStorage.getItem('data') || '[]'),
+            filter: 'all',
         }
 
         this.id = Math.floor(Math.random() * 100);
 
-        this.addTodo = this.addTodo.bind(this);
-        this.deleteTodo = this.deleteTodo.bind(this);
+        this.onAddTodo = this.onAddTodo.bind(this);
+        this.onDeleteTodo = this.onDeleteTodo.bind(this);
+        this.onFilterSelect = this.onFilterSelect.bind(this);
+        this.onToggleChecked = this.onToggleChecked.bind(this);
     }
 
-    addTodo(text) {
+    onAddTodo(text) {
         const newItem = {
             id: this.id++,
             text: text,
-            completed: false
+            isChecked: false
         }
+
         this.setState(({data}) => {
             const newArr = [...data, newItem];
-            console.log(newArr);
+            localStorage.setItem('data', JSON.stringify(newArr))
+
+            return {
+                data: newArr,
+            }
+        })
+    }
+
+    onDeleteTodo(id) {
+        this.setState(({data}) => {
+            const newArr = data.filter(item => item.id !== id)
+            localStorage.setItem('data', JSON.stringify(newArr))
             return {
                 data: newArr
             }
         })
     }
 
-    deleteTodo(id) {
+    onToggleChecked(id) {
         this.setState(({data}) => {
-            const newArr = data.filter(item => item.id !== id)
+            const index = data.findIndex(elem => elem.id === id);
+            const old = data[index];
+            const newItem = {...old, isChecked: !old.isChecked};
+            const newArr = [...data.slice(0, index), newItem, ...data.slice(index + 1)];
+            localStorage.setItem('data', JSON.stringify(newArr))
             return {
                 data: newArr
             }
         })
+    }
+
+    filterTodo(items, filter) {
+        if (filter === 'completed') {
+            return items.filter(item => item.isChecked);
+        } else if (filter === 'active') {
+            return items.filter(item => !item.isChecked);
+        } else {
+            return items
+        }
+    }
+
+    onFilterSelect(filter) {
+        this.setState({filter})
     }
 
     render() {
+        const {data, id, filter} = this.state;
+        const allTodo = data.length;
+        const visiblePosts = this.filterTodo(data, filter);
+
         return (
             <div className="App">
                 <AppHeader />
-                <TodoForm addTodo={this.addTodo} />
-                <TodoList data={this.state.data} id={this.state.data.id} deleteTodo={this.deleteTodo} />
-                <AppFooter />
+                <TodoForm
+                    onAddTodo={this.onAddTodo} />
+                <TodoList
+                    posts={visiblePosts}
+                    id={id}
+                    onDeleteTodo={this.onDeleteTodo}
+                    onToggleChecked={this.onToggleChecked} />
+                <AppFooter
+                    allTodo={allTodo}
+                    filter={filter}
+                    onFilterSelect={this.onFilterSelect} />
             </div>
         )
     }

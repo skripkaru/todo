@@ -17,13 +17,14 @@ export default class TodoForm extends Component {
         this.setState({
             text: e.target.value
         })
-
-        // console.log(this.state.value);
     }
 
     onSubmit(e) {
         e.preventDefault();
-        this.props.addTodo(this.state.text)
+        this.props.onAddTodo(this.state.text)
+        this.setState({
+            text: ''
+        })
     }
 
     render() {
@@ -35,7 +36,7 @@ export default class TodoForm extends Component {
                     type="text"
                     placeholder="Введите что-нибудь..."
                     onChange={this.onChange}
-                    value={this.state.value} />
+                    value={this.state.text} />
             </form>
         )
     }

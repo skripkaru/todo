@@ -1,18 +1,40 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './AppFooter.css'
 
-const AppFooter = () => {
-    return (
-        <footer className="AppFooter">
-            <div>3 заметки</div>
-            <div className="TodoSortPanel">
-                <span>Все</span>
-                <span>Активные</span>
-                <span>Завершенные</span>
-            </div>
-            <div>Удалить завершенные</div>
-        </footer>
-    )
-};
+export default class AppFooter extends Component {
+    constructor(props) {
+        super(props)
 
-export default AppFooter;
+        this.buttons = [
+            {name: 'all', text: 'Все'},
+            {name: 'active', text: 'Активные'},
+            {name: 'completed', text: 'Завершенные'}
+        ]
+    }
+
+    render() {
+        const {allTodo, filter, onFilterSelect} = this.props;
+
+        const buttons = this.buttons.map(({name, text}) => {
+            const active = filter === name;
+            const clazz = active ? 'active' : null;
+            return (
+                <button
+                    type='button'
+                    key={name}
+                    className={clazz}
+                    onClick={() => onFilterSelect(name)}>
+                    {text}</button>
+            )
+        })
+
+        return (
+            <footer className="AppFooter">
+                <div>Заметки {allTodo}</div>
+                <div className="TodoSortPanel" >
+                    {buttons}
+                </div>
+            </footer>
+        )
+    }
+};
