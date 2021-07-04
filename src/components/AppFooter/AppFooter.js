@@ -30,7 +30,7 @@ export default class AppFooter extends Component {
 
         return (
             <footer className="AppFooter">
-                <div>Заметки {allTodo}</div>
+                <div>Задачи {allTodo}</div>
                 <div className="TodoSortPanel" >
                     {buttons}
                 </div>

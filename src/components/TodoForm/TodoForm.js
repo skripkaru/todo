@@ -34,7 +34,7 @@ export default class TodoForm extends Component {
                 onSubmit={this.onSubmit}>
                 <input
                     type="text"
-                    placeholder="Введите что-нибудь..."
+                    placeholder="Добавить задачу"
                     onChange={this.onChange}
                     value={this.state.text} />
             </form>
