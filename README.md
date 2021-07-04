@@ -1,6 +1,6 @@
 # [TODO React](https://skripkaru.github.io/react-todo/)
 
-![Project preview](./public/img/todo.png)
+![Project preview](./public/img/readme.png)
 
 ## Getting Started with Create React App
 
