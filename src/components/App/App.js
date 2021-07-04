@@ -10,12 +10,6 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // data: [
-            //     {id: localStorage.getItem("id"), text: localStorage.getItem("text"), isChecked: localStorage.getItem("isChecked")},
-            //     {id: "0", text: "Выспаться", isChecked: false},
-            //     {id: "1", text: "Сходить на море", isChecked: false},
-            //     {id: "2", text: "Поиграть в баскетбол", isChecked: false},
-            // ],
             data: JSON.parse(localStorage.getItem('data') || '[]'),
             filter: 'all',
         }
